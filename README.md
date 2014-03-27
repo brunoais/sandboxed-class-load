@@ -18,3 +18,5 @@ ForA and ForB are 2 projects that the respective ClassesA and ClassesB depend on
 They act as external dependency libraries that they (ClassesA and ClassesB) require in order to work properly.
 
 dependsTOP acts as a library that both ForA and ForB require in order to function. This one acts as a demonstration that hierarchical loading works no matter the order that the libs are placed in the libs directory.
+
+forBoth acts as a library that ClassesA and ClassesB both depend on and is shared between all classes that are running in the jvm.
