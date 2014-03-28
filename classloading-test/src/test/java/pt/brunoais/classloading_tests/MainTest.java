@@ -7,11 +7,16 @@ import static org.junit.Assert.fail;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.lang.reflect.Type;
+import java.util.Arrays;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import pt.brunoais.classloading_test.ClassLoadingClassLoader;
 import pt.brunoais.classloading_test.Main;
+import pt.brunoais.classloading_test.Start;
 
 public class MainTest {
 
@@ -23,12 +28,24 @@ public class MainTest {
 
 	private Object victim1;
 	private Object victim2;
+	private ClassLoader[] classLoader;
+	
+	@Before
+	public void prepare() {
+
+		classLoader = new ClassLoader[1];
+		
+		Main.loadAllDirectoryJarDependencies(classLoader);
+		
+		
+	}
+	
 
 	private void loadBasics() throws ClassNotFoundException,
 			InstantiationException, IllegalAccessException {
 
-		loader1 = new ClassLoadingClassLoader(Main.class.getClassLoader(), "A");
-		loader2 = new ClassLoadingClassLoader(Main.class.getClassLoader(), "B");
+		loader1 = new ClassLoadingClassLoader(classLoader[0], "A");
+		loader2 = new ClassLoadingClassLoader(classLoader[0], "B");
 
 		SandboxMainClass1 = loader1
 				.loadClass("pt.brunoais.classloading_tests.classes.SandboxMain");
@@ -255,5 +272,89 @@ public class MainTest {
 
 	}
 	
+
+	@Test()
+	public void classesThatdependOnClassesThatDependOnClassesEtc() throws ClassNotFoundException,
+			InstantiationException, IllegalAccessException,
+			IllegalArgumentException, InvocationTargetException,
+			NoSuchMethodException, SecurityException, NoSuchFieldException {
+		loadBasics();
+
+		SandboxMainClass1.getDeclaredMethod("actA").invoke(victim1);
+		SandboxMainClass2.getDeclaredMethod("actB").invoke(victim2);
+
+		Field aField1 = SandboxMainClass1.getDeclaredField("a");
+		Field bField1 = SandboxMainClass1.getDeclaredField("b");
+		Field dependsField1 = SandboxMainClass1.getDeclaredField("depends");
+		Field cField1 = SandboxMainClass1.getDeclaredField("c");
+		
+		aField1.setAccessible(true);
+		bField1.setAccessible(true);
+		dependsField1.setAccessible(true);
+		cField1.setAccessible(true);
+
+		Object a1 = aField1.get(victim1);
+		Object b1 = bField1.get(victim1);
+		Object depends1 = dependsField1.get(victim1);
+		Object c1 = cField1.get(victim1);
+		
+		
+		Field aField2 = SandboxMainClass2.getDeclaredField("a");
+		Field bField2 = SandboxMainClass2.getDeclaredField("b");
+		Field dependsField2 = SandboxMainClass2.getDeclaredField("depends");
+		Field cField2 = SandboxMainClass2.getDeclaredField("c");
+		
+		aField2.setAccessible(true);
+		bField2.setAccessible(true);
+		dependsField2.setAccessible(true);
+		cField2.setAccessible(true);
+		
+		Object a2 = aField2.get(victim2);
+		Object b2 = bField2.get(victim2);
+		Object depends2 = dependsField2.get(victim2);
+		Object c2 = cField2.get(victim2);
+		
+		
+		Class<?> depends1ExtendingClass = depends1.getClass().getSuperclass();
+		Class<?> depends2ExtendingClass = depends2.getClass().getSuperclass();
+		
+		assertNotEquals("The class that depends extends must be different, as different class loaders were used", depends1ExtendingClass, depends2ExtendingClass);
+		
+		System.err.println(depends1ExtendingClass.getName() + "  " + depends2ExtendingClass.getName());
+		
+		assertEquals("Even though they are different. They share the same name", depends1ExtendingClass.getName(), depends2ExtendingClass.getName());
+		
+
+		// The dependsTOP (from projectB) implements java.io.Serializable. The other one doesn't
+		
+		Class<?>[] depends1ExtendingClassInterfaces = depends1ExtendingClass.getInterfaces();
+		Class<?>[] depends2ExtendingClassInterfaces = depends2ExtendingClass.getInterfaces();
+
+		System.err.println(depends1ExtendingClassInterfaces.length + "   " + depends2ExtendingClassInterfaces.length);
+		
+		assertNotEquals("As the 2nd implements Serializable and the 1st one doesn't, the number of interfaces must not be the same", depends1ExtendingClassInterfaces.length, depends2ExtendingClassInterfaces.length);
+		
+		for (Class<?> depends1ExtendingClassInterface : depends1ExtendingClassInterfaces) {
+			if(depends1ExtendingClassInterface.equals(java.io.Serializable.class)){
+				fail("DependsTop for ClassA implements java.io.Serializable.class");
+			}
+		}
+
+		boolean foundSerializable = false;
+		
+
+		System.err.println(Arrays.toString(depends1ExtendingClassInterfaces));
+		for (Class<?> depends2ExtendingClassInterface : depends2ExtendingClassInterfaces) {
+			if(depends2ExtendingClassInterface.equals(java.io.Serializable.class)){
+				foundSerializable = true;
+				break;
+			}
+		}
+
+		if(!foundSerializable){
+			fail("DependsTop for ClassB does not implement java.io.Serializable.class");
+		}
+		
+	}
 
 }
