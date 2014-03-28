@@ -19,6 +19,7 @@ import java.util.logging.Level;
 
 public class ClassLoadingClassLoader extends ClassLoader {
 	
+	@SuppressWarnings("unused")
 	private String classType;
 	private String basePath;
 	

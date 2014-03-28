@@ -7,16 +7,13 @@ import static org.junit.Assert.fail;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.util.Arrays;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import pt.brunoais.classloading_test.ClassLoadingClassLoader;
 import pt.brunoais.classloading_test.Main;
-import pt.brunoais.classloading_test.Start;
 
 public class MainTest {
 
@@ -283,36 +280,13 @@ public class MainTest {
 		SandboxMainClass1.getDeclaredMethod("actA").invoke(victim1);
 		SandboxMainClass2.getDeclaredMethod("actB").invoke(victim2);
 
-		Field aField1 = SandboxMainClass1.getDeclaredField("a");
-		Field bField1 = SandboxMainClass1.getDeclaredField("b");
 		Field dependsField1 = SandboxMainClass1.getDeclaredField("depends");
-		Field cField1 = SandboxMainClass1.getDeclaredField("c");
-		
-		aField1.setAccessible(true);
-		bField1.setAccessible(true);
 		dependsField1.setAccessible(true);
-		cField1.setAccessible(true);
-
-		Object a1 = aField1.get(victim1);
-		Object b1 = bField1.get(victim1);
 		Object depends1 = dependsField1.get(victim1);
-		Object c1 = cField1.get(victim1);
 		
-		
-		Field aField2 = SandboxMainClass2.getDeclaredField("a");
-		Field bField2 = SandboxMainClass2.getDeclaredField("b");
 		Field dependsField2 = SandboxMainClass2.getDeclaredField("depends");
-		Field cField2 = SandboxMainClass2.getDeclaredField("c");
-		
-		aField2.setAccessible(true);
-		bField2.setAccessible(true);
 		dependsField2.setAccessible(true);
-		cField2.setAccessible(true);
-		
-		Object a2 = aField2.get(victim2);
-		Object b2 = bField2.get(victim2);
 		Object depends2 = dependsField2.get(victim2);
-		Object c2 = cField2.get(victim2);
 		
 		
 		Class<?> depends1ExtendingClass = depends1.getClass().getSuperclass();
