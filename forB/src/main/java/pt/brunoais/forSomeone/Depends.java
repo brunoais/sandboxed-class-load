@@ -1,8 +1,10 @@
 package pt.brunoais.forSomeone;
 
-public class Depends {
+import pt.brunoais.dependsTOP.DependsTOP;
+
+public class Depends extends DependsTOP{
 	
 	public String depends() {
-		return "B depends on me";
+		return dependsTOP() + " A depends on me";
 	}
 }
