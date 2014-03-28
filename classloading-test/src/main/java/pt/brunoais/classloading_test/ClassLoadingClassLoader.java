@@ -40,6 +40,7 @@ public class ClassLoadingClassLoader extends ClassLoader {
 	
 	public ClassLoadingClassLoader(ClassLoader parent, String classType) {
 		super(parent);
+		
 		this.classType = classType;
 		basePath = "." + File.separator +  "Classes" + classType;
 		
@@ -159,6 +160,7 @@ public class ClassLoadingClassLoader extends ClassLoader {
 			// It's a class that would be found without this custom classloader
 			return super.loadClass(name);
 		}catch(ClassNotFoundException e){
+			
 //			int splitPos = name.lastIndexOf('.');
 //			String path = name.substring(0, splitPos).replace('.', File.separatorChar);
 			String className = name.replace('.', File.separatorChar) + ".class";
