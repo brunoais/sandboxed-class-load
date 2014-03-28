@@ -4,7 +4,7 @@
 
   <groupId>pt.brunoais</groupId>
   <artifactId>dependsTOP</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1-SNAPSHOT2</version>
   <packaging>jar</packaging>
 
   <name>dependsTOP</name>
@@ -14,12 +14,4 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
 </project>
