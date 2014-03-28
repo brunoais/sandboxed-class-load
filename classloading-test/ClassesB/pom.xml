@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>pt.brunoais</groupId>
-		<artifactId>classloading-tests</artifactId>
+		<artifactId>classloading-test</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>ClassesB</artifactId>
-	<version>0.0.1-SNAPSHOT3</version>
+	<version>0.0.1-SNAPSHOT2</version>
 	<name>ClassesB</name>
 	<url>http://maven.apache.org</url>
 	<build>
@@ -18,16 +18,20 @@
 				<version>2.8</version>
 				<executions>
 					<execution>
-						<id>copy</id>
+						<id>copy-dependencies</id>
 						<phase>package</phase>
 						<goals>
 							<goal>copy-dependencies</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<outputDirectory>${basedir}/lib</outputDirectory>
 							<overWriteReleases>true</overWriteReleases>
 							<overWriteSnapshots>true</overWriteSnapshots>
-							<excludeTransitive>true</excludeTransitive>
+							<excludeTransitive>false</excludeTransitive>
+							
+							<excludeGroupIds>junit</excludeGroupIds>
+							<excludeArtifactIds>hamcrest</excludeArtifactIds>
+							<excludeArtifactIds>forBoth</excludeArtifactIds>
 						</configuration>
 					</execution>
 				</executions>
@@ -77,12 +81,11 @@
 		<dependency>
 			<groupId>pt.brunoais</groupId>
 			<artifactId>forSomeone</artifactId>
-			<version>0.0.1-SNAPSHOT1</version>
+			<version>0.0.1-SNAPSHOT2</version>
 		</dependency>
 		<dependency>
 			<groupId>pt.brunoais</groupId>
 			<artifactId>forBoth</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
