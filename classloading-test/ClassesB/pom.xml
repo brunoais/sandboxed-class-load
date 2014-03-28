@@ -21,5 +21,15 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+    	<groupId>pt.brunoais</groupId>
+    	<artifactId>forSomeone</artifactId>
+    	<version>0.0.1-SNAPSHOT1</version>
+    </dependency>
+    <dependency>
+    	<groupId>pt.brunoais</groupId>
+    	<artifactId>forBoth</artifactId>
+    	<version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
 </project>
