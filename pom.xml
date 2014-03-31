@@ -1,0 +1,10 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modules>
+  	<module>../classloading-test</module>
+  	<module>../dependsTOPA</module>
+  	<module>../dependsTOPB</module>
+  	<module>../forA</module>
+  	<module>../forB</module>
+  	<module>../forBoth</module>
+  </modules>
+</project>
