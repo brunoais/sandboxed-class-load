@@ -4,7 +4,7 @@
 
   <groupId>pt.brunoais</groupId>
   <artifactId>classloading-test</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>classloading-test</name>
@@ -24,7 +24,6 @@
     <dependency>
     	<groupId>pt.brunoais</groupId>
     	<artifactId>forBoth</artifactId>
-    	<scope>provided</scope>
     </dependency>
   </dependencies>
   <build>

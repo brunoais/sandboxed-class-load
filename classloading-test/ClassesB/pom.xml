@@ -4,10 +4,10 @@
 	<parent>
 		<groupId>pt.brunoais</groupId>
 		<artifactId>classloading-test</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 	<artifactId>ClassesB</artifactId>
-	<version>0.0.1-SNAPSHOT2</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<name>ClassesB</name>
 	<url>http://maven.apache.org</url>
 	<build>
@@ -30,7 +30,7 @@
 							<excludeTransitive>false</excludeTransitive>
 							
 							<excludeGroupIds>junit</excludeGroupIds>
-							<excludeArtifactIds>hamcrest</excludeArtifactIds>
+							<excludeArtifactIds>hamcrest-core</excludeArtifactIds>
 							<excludeArtifactIds>forBoth</excludeArtifactIds>
 						</configuration>
 					</execution>
@@ -81,7 +81,8 @@
 		<dependency>
 			<groupId>pt.brunoais</groupId>
 			<artifactId>forSomeone</artifactId>
-			<version>0.0.1-SNAPSHOT2</version>
+			<version>0.0.2-SNAPSHOT</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>pt.brunoais</groupId>
