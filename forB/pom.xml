@@ -39,8 +39,16 @@
     <dependency>
     	<groupId>pt.brunoais</groupId>
     	<artifactId>dependsTOP</artifactId>
-    	<version>0.0.2-SNAPSHOT</version>
     	<scope>provided</scope>
     </dependency>
   </dependencies>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>pt.brunoais</groupId>
+  			<artifactId>dependsTOP</artifactId>
+  			<version>0.0.2-SNAPSHOT</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
 </project>

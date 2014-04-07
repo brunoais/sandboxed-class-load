@@ -81,12 +81,19 @@
 		<dependency>
 			<groupId>pt.brunoais</groupId>
 			<artifactId>forSomeone</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>pt.brunoais</groupId>
 			<artifactId>forBoth</artifactId>
 		</dependency>
 	</dependencies>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>pt.brunoais</groupId>
+				<artifactId>forSomeone</artifactId>
+				<version>0.0.2-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 </project>

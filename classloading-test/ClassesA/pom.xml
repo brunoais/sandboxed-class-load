@@ -91,7 +91,6 @@
     <dependency>
     	<groupId>pt.brunoais</groupId>
     	<artifactId>forSomeone</artifactId>
-    	<scope>provided</scope>
     </dependency>
     <dependency>
     	<groupId>pt.brunoais</groupId>
@@ -105,7 +104,6 @@
   			<groupId>pt.brunoais</groupId>
   			<artifactId>forSomeone</artifactId>
   			<version>0.0.1-SNAPSHOT</version>
-  			<scope>provided</scope>
   		</dependency>
   	</dependencies>
   </dependencyManagement>
