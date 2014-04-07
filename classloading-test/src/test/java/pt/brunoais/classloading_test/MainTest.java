@@ -1,4 +1,4 @@
-package pt.brunoais.classloading_tests;
+package pt.brunoais.classloading_test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -12,8 +12,6 @@ import java.util.Arrays;
 import org.junit.Before;
 import org.junit.Test;
 
-import pt.brunoais.classloading_test.ClassLoadingClassLoader;
-import pt.brunoais.classloading_test.Main;
 
 public class MainTest {
 
@@ -132,6 +130,7 @@ public class MainTest {
 			fail("The second class loaded must have the method actB()");
 		}
 
+		fail("just fail");
 		try {
 			SandboxMainClass1.getMethod("actB").invoke(victim1);
 			fail("The first class loaded must NOT have the method actB()");
