@@ -130,7 +130,6 @@ public class MainTest {
 			fail("The second class loaded must have the method actB()");
 		}
 
-		fail("just fail");
 		try {
 			SandboxMainClass1.getMethod("actB").invoke(victim1);
 			fail("The first class loaded must NOT have the method actB()");
