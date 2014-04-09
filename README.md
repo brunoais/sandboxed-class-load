@@ -1,6 +1,27 @@
 sandboxed-class-load
 ====================
 
+### Quick start
+On the root directory (where the parent pom is):  
+mvn install  
+cd classloading-test  
+java -cp path/to/junit/4.11/junit-4.11.jar;path/to/org/hamcrest/hamcrest-parent/1.3;path/to/org/hamcrest/hamcrest-core/1.3/*;./target/test-classes/;./target/classes org.junit.runner.JUnitCore pt.brunoais.classloading_test.MainTest
+
+If using *eclipse*, just click on the MainTest.java and tell it to run.  
+This file is under classloading-test project in the "src/test/java" source files.
+
+On **linux**, probably:  
+mvn install  
+cd classloading-test  
+java -cp ~/.m2/junit/4.11/junit-4.11.jar:path/to/org/hamcrest/hamcrest-parent/1.3:~/.m2/org/hamcrest/hamcrest-core/1.3/*:./target/test-classes/:./target/classes org.junit.runner.JUnitCore pt.brunoais.classloading_test.MainTest
+
+On **windows**, probably:  
+mvn install  
+cd classloading-test  
+java -cp %userprofile%\.m2\junit\4.11\junit-4.11.jar;%userprofile%\org\hamcrest\hamcrest-parent\1.3;%userprofile%\org\hamcrest\hamcrest-core\1.3\*;.\target\test-classes\;.\target\classes org.junit.runner.JUnitCore pt.brunoais.classloading_test.MainTest
+
+### Explanation
+
 Basic demo and unit testing on class loading that allows different classes with the same (fully qualified) name to live on the same program.
 
 This was developed made using eclipse and maven quickstart.
